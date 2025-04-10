@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:web_adapte_teste/data/database.dart';
 import 'package:web_adapte_teste/models/game_announcement.dart';
 import 'package:web_adapte_teste/models/user_announcement.dart';
 
 class AvailableAds extends ChangeNotifier {
-  // Lista de jogos disponiveis para anuncios
+  final DataBase _db = DataBase();
+  // Lista com alguns anuncios já pre carregados para facilitar testes
+  // como foi feito antes da tela de cadastro, contem algumas diferenças nos dados
   List<GameAnnouncement> gameAnnouncements = [
     GameAnnouncement(
       name: "League of Legends",
@@ -176,28 +179,36 @@ class AvailableAds extends ChangeNotifier {
     ),
   ];
 
-  // lista de anuncios do usuario
-  List<GameAnnouncement> userAnnouncement = [];
-
   // get de announcements
   List<GameAnnouncement> getAnnouncementList() {
     return gameAnnouncements;
   }
 
-  // get de userAnnouncement
-  List<GameAnnouncement> getUserAnnouncement() {
-    return userAnnouncement;
-  }
+  // Adiciona novo anúncio a um jogo
+  void addAdToGameAnnouncement(
+    String gameAnnouncementName,
+    UserAnnouncement userAnnouncement,
+  ) {
+    for (GameAnnouncement gameAnnouncement in gameAnnouncements) {
+      if (gameAnnouncement.name == gameAnnouncementName) {
+        gameAnnouncement.userAnnouncements.add(userAnnouncement);
 
-  // adicionar itens nos anuncios do usuario
-  void addItemToUserAnnouncement(GameAnnouncement announcement) {
-    userAnnouncement.add(announcement);
+        // Atualiza os dados no banco após modificar a lista
+        _db.gameAnnouncements = gameAnnouncements;
+        _db.updateDataBase();
+      }
+    }
     notifyListeners();
   }
 
-  // remover item dos anuncios do usuario
-  void removerItemFromCart(GameAnnouncement announcement) {
-    userAnnouncement.remove(announcement);
-    notifyListeners();
+  // Carregar a lista como dados iniciais
+  void initiateFistData() {
+    _db.createInitialData(gameAnnouncements);
+  }
+
+  // Carregar dados do banco
+  void loadData() {
+    _db.loadData();
+    gameAnnouncements = _db.gameAnnouncements.cast<GameAnnouncement>();
   }
 }

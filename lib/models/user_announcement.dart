@@ -1,9 +1,23 @@
-class UserAnnouncement {
-  final String name;
-  final String gameTime;
-  final String availability;
-  final bool isCall;
-  final String discord;
+import 'package:hive/hive.dart';
+
+part 'user_announcement.g.dart'; 
+
+@HiveType(typeId: 1)
+class UserAnnouncement extends HiveObject {
+  @HiveField(0)
+  String name;
+
+  @HiveField(1)
+  String gameTime;
+
+  @HiveField(2)
+  String availability;
+
+  @HiveField(3)
+  bool isCall;
+
+  @HiveField(4)
+  String discord;
 
   UserAnnouncement({
     required this.name,

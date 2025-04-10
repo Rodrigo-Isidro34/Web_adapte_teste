@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:web_adapte_teste/models/game_announcement.dart';
 import 'package:web_adapte_teste/pages/anuncios_page.dart';
+import 'package:web_adapte_teste/theme/app_colors.dart';
 
 // ignore: must_be_immutable
+// Quadros de anuncios que aparecem na HomePage
 class GameAnnouncementTile extends StatelessWidget {
   final GameAnnouncement announcement;
   const GameAnnouncementTile({super.key, required this.announcement});
@@ -10,6 +12,7 @@ class GameAnnouncementTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      // abrir o anuncuncio correspondente apos selecionar o anuncio
       onTap: () {
         Navigator.push(
           context,
@@ -58,7 +61,7 @@ class GameAnnouncementTile extends StatelessWidget {
                     Text(
                       announcement.name,
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: AppColors.textWhite,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         fontFamily: "Inter",
@@ -68,7 +71,7 @@ class GameAnnouncementTile extends StatelessWidget {
                     Text(
                       "${announcement.userAnnouncements.length} anúncios",
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: AppColors.textWhite,
                         fontSize: 14,
                         fontFamily: "Inter",
                       ),
