@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
 
     final adsProvider = Provider.of<AvailableAds>(context, listen: false);
-    
+
     // se for a primeira iteração do App, carrege os dados iniciais
     if (_myBox.get("GAMEANNOUNCEMENTS") == null) {
       adsProvider.initiateFistData();
@@ -51,7 +51,16 @@ class _SplashPageState extends State<SplashPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Center(child: Image.asset("assets/images/Logo.png")),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/images/Logo.png"),
+            const SizedBox(height: 25),
+            const CircularProgressIndicator(),
+          ],
+        ),
+      ),
     );
   }
 }
