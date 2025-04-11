@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-
+// para gerar arquivo do hive
 part 'user_announcement.g.dart'; 
 
 @HiveType(typeId: 1)

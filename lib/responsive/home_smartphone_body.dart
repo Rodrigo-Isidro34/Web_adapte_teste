@@ -23,8 +23,8 @@ class _HomePageState extends State<HomeSmartphoneBody> {
               child: Container(
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/images/Fundo.png"),
-                    fit: BoxFit.fill,
+                    image: AssetImage("assets/images/Fundo_tablet.png"),
+                    fit: BoxFit.cover,
                   ),
                 ),
                 child: SafeArea(

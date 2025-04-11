@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 import 'user_announcement.dart';
-
+// isso faz o hive gerar um arquivo com o que precisa para serializar a classe
 part 'game_announcement.g.dart'; 
 
 @HiveType(typeId: 0)

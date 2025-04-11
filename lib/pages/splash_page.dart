@@ -22,10 +22,12 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
 
     final adsProvider = Provider.of<AvailableAds>(context, listen: false);
-
+    
+    // se for a primeira iteração do App, carrege os dados iniciais
     if (_myBox.get("GAMEANNOUNCEMENTS") == null) {
       adsProvider.initiateFistData();
     } else {
+      // se não é pq já existe dados, então carrege eles
       adsProvider.loadData();
     }
 

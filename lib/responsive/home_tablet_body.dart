@@ -10,6 +10,7 @@ class HomeTabletBody extends StatelessWidget {
 
   final ScrollController _scrollController = ScrollController();
 
+  // logica da seta da esquerda da lista que serve para rolar a lista
   void _scrollLeft() {
     _scrollController.animateTo(
       _scrollController.offset - 300,
@@ -18,6 +19,7 @@ class HomeTabletBody extends StatelessWidget {
     );
   }
 
+  // a seta da direita
   void _scrollRight() {
     _scrollController.animateTo(
       _scrollController.offset + 300,
@@ -26,6 +28,7 @@ class HomeTabletBody extends StatelessWidget {
     );
   }
 
+  // abrir o Dialog com formulario de cadastro
   void _openPostAdDialog(BuildContext context) {
     showDialog(context: context, builder: (context) => (const PostAdDialog()));
   }
@@ -69,29 +72,26 @@ class HomeTabletBody extends StatelessWidget {
                                 ),
                               ),
                               // Duo
-                              Text(
-                                " duo ",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 64,
-                                  fontFamily: "Inter",
-                                  foreground:
-                                      Paint()
-                                        ..shader = const LinearGradient(
-                                          colors: <Color>[
-                                            Color(0xFF9572FC),
-                                            Color(0xFF43E7AD),
-                                            Color(0xFFE1D55D),
-                                          ],
-                                          stops: [0.6, 0.8, 0.9],
-                                        ).createShader(
-                                          const Rect.fromLTWH(
-                                            0.0,
-                                            0.0,
-                                            600.0,
-                                            100.0,
-                                          ),
-                                        ),
+                              ShaderMask(
+                                shaderCallback:
+                                    (bounds) => const LinearGradient(
+                                      colors: <Color>[
+                                        Color(0xFF9572FC),
+                                        Color(0xFF43E7AD),
+                                        Color(0xFFE1D55D),
+                                      ],
+                                      stops: [0, 0.5, 1],
+                                    ).createShader(bounds),
+                                child: const Text(
+                                  " duo ",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 64,
+                                    fontFamily: "Inter",
+                                    color:
+                                        Colors
+                                            .white, // Cor base do texto (vai ser substituída pelo shader)
+                                  ),
                                 ),
                               ),
                               // está aqui

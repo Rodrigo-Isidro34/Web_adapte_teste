@@ -15,7 +15,7 @@ class PostAdDialog extends StatefulWidget {
   State<PostAdDialog> createState() => _PostAdDialogState();
 }
 
-// criar um anuncio ao precionar o botão "Encontrar duo"
+// verifica se um anuncio é valido para ser criado
 bool _isCreateUserAdValid(
   BuildContext context,
   dynamic gameSelected,
@@ -65,6 +65,7 @@ bool _isCreateUserAdValid(
   return isValid;
 }
 
+// Mostrar uma toast mensage
 void showToastMensage(String mensagem) {
   Fluttertoast.showToast(
     msg: mensagem,
@@ -86,6 +87,7 @@ class _PostAdDialogState extends State<PostAdDialog> {
   final TextEditingController _nicknameController = TextEditingController();
   final TextEditingController _gameTimeController = TextEditingController();
   final TextEditingController _discordController = TextEditingController();
+  // controllers do horario "de xxh até xxh"
   final TextEditingController _fromController = TextEditingController();
   final TextEditingController _toController = TextEditingController();
 
@@ -113,6 +115,7 @@ class _PostAdDialogState extends State<PostAdDialog> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // Publique um anúncio
                           const Text(
                             "Publique um anúncio",
                             style: TextStyle(
@@ -123,7 +126,7 @@ class _PostAdDialogState extends State<PostAdDialog> {
                             ),
                           ),
                           const SizedBox(height: 25),
-
+                          // Qual o game?
                           const Text(
                             "Qual o game?",
                             style: TextStyle(
@@ -143,7 +146,7 @@ class _PostAdDialogState extends State<PostAdDialog> {
                           ),
 
                           const SizedBox(height: 25),
-
+                          // Seu nome (ou nickname)
                           const Text(
                             "Seu nome (ou nickname)",
                             style: TextStyle(
@@ -154,20 +157,21 @@ class _PostAdDialogState extends State<PostAdDialog> {
                           ),
 
                           const SizedBox(height: 10),
-
+                          // Como te chamam dentro do game?
                           MyTextfield(
                             hintText: 'Como te chamam dentro do game?',
                             controller: _nicknameController,
                           ),
 
                           const SizedBox(height: 25),
-
+                          // Joga há quantos anos? + Qual seu Discord?
                           Row(
                             children: [
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    // Joga há quantos anos?
                                     const Text(
                                       "Joga há quantos anos?",
                                       style: TextStyle(
@@ -189,6 +193,7 @@ class _PostAdDialogState extends State<PostAdDialog> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    // Qual seu Discord?
                                     const Text(
                                       "Qual seu Discord?",
                                       style: TextStyle(
@@ -209,7 +214,7 @@ class _PostAdDialogState extends State<PostAdDialog> {
                           ),
 
                           const SizedBox(height: 25),
-
+                          // Qual horário do dia? + de até
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -315,6 +320,7 @@ class _PostAdDialogState extends State<PostAdDialog> {
                               Expanded(
                                 child: ElevatedButton.icon(
                                   onPressed: () {
+                                    // Se for possivel criar um usuario
                                     if (_isCreateUserAdValid(
                                       context,
                                       _gameSelected,
@@ -325,6 +331,7 @@ class _PostAdDialogState extends State<PostAdDialog> {
                                       _fromController,
                                       _toController,
                                     )) {
+                                      // Crie um usuario
                                       String availability =
                                           "${_days.length} dias ° ${_fromController.text} - ${_toController.text}";
                                       value.addAdToGameAnnouncement(

@@ -15,6 +15,7 @@ class AnunciosPage extends StatelessWidget {
     return Consumer<AvailableAds>(
       builder:
           (context, value, child) => Scaffold(
+            // AppBar diferente da home
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
@@ -91,13 +92,13 @@ class AnunciosPage extends StatelessWidget {
 
                         const SizedBox(height: 10),
 
-                        // Lista ou grade de usuarios que anunciaram
+                        // Lista de usuarios que anunciaram
                         Padding(
                           padding: const EdgeInsets.only(right: 25),
                           child: LayoutBuilder(
                             builder:
                                 (context, constraints) =>
-                                // para Smartphone, mostrar em lista horizontal
+                                // mostrar em lista horizontal
                                 SizedBox(
                                   height:
                                       constraints.maxHeight > 400 ? 370 : 180,

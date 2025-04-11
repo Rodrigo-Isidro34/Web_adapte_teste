@@ -9,6 +9,7 @@ class UserAnnouncementTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // como os textos tinha um espaçamento igual, usar a variavel
     final double spaceTexts = 25;
     return Container(
       margin: const EdgeInsets.only(left: 25),

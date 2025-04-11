@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
         automaticallyImplyLeading: false,
       ),
       extendBodyBehindAppBar: true,
+      // se for um tablet, escolher o corpo adequado
       body: isTablet ? HomeTabletBody() : const HomeSmartphoneBody(),
     );
   }

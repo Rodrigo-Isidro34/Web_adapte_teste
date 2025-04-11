@@ -7,11 +7,14 @@ import 'package:web_adapte_teste/models/user_announcement.dart';
 import 'package:web_adapte_teste/pages/splash_page.dart';
 
 void main() async {
+  // inicializar o hive
   await Hive.initFlutter();
 
+  // Registrar os Adapters que foram gerados automaticamente pelo hive
   Hive.registerAdapter(GameAnnouncementAdapter());
   Hive.registerAdapter(UserAnnouncementAdapter());
 
+  // Abrir uma "Box"
   await Hive.openBox('appBox');
 
   runApp(const MainApp());
@@ -22,6 +25,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // inicializar com um provider
     return ChangeNotifierProvider(
       create: (context) => AvailableAds(),
       builder:
